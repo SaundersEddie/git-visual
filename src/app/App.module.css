@@ -1,3 +1,26 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.listArea {
+  flex: 1;
+  border-right: 1px solid #1e293b;
+  overflow: hidden;
+}
+
+.detailsArea {
+  width: 320px;
+  background-color: #0b1220;
+}
+
 .wrapper {
   padding: 24px;
 }
