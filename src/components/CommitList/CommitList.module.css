@@ -73,3 +73,88 @@
   stroke: #0f172a;
   stroke-width: 1;
 }
+
+.container {
+  height: 100%;
+  overflow: auto;
+  padding: 10px;
+}
+
+.row {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(148, 163, 184, 0.15);
+}
+
+.selected {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.28);
+}
+
+.summary {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  min-width: 0;
+  flex: 1;
+}
+
+.sha {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  opacity: 0.95;
+}
+
+.msg {
+  opacity: 0.92;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.refs {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.refChip {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(226, 232, 240, 0.85);
+}
+
+.graph {
+  flex: 0 0 auto;
+  opacity: 0.95;
+}
+
+.graph line {
+  stroke-width: 1.6;
+}
+
+.graph circle {
+  stroke: var(--bg);
+  stroke-width: 1.25;
+}

@@ -26,6 +26,7 @@ function LaneGraph({
 }) {
   const width = Math.max(1, laneCount) * LANE_W;
   const midY = ROW_H / 2;
+  const laneColor = (lane: number) => `hsl(${(lane * 47) % 360} 70% 65%)`;
 
   if (!row) return <div className={styles.graph} style={{ width }} />;
 
@@ -46,7 +47,7 @@ function LaneGraph({
             y1={0}
             x2={x}
             y2={ROW_H}
-            stroke='currentColor'
+            stroke={laneColor(lane)}
             opacity='0.35'
           />
         );
@@ -64,7 +65,7 @@ function LaneGraph({
             y1={y1}
             x2={x2}
             y2={y2}
-            stroke='currentColor'
+            stroke={laneColor(m.fromLane)}
             opacity='0.6'
           />
         );
@@ -74,7 +75,7 @@ function LaneGraph({
         cx={row.laneIndex * LANE_W + LANE_W / 2}
         cy={midY}
         r={DOT_R}
-        fill='currentColor'
+        fill={laneColor(row.laneIndex)}
         opacity='0.95'
       />
     </svg>
@@ -127,7 +128,7 @@ export default function CommitList({
               >
                 <LaneGraph row={row} laneCount={laneCount} />
                 <div className={styles.summary}>
-                  <strong className={styles.sha}>{c.sha}</strong>
+                  <strong className={styles.sha}>{c.sha.slice(0, 7)}</strong>
                   <span className={styles.msg}>{c.message}</span>
                 </div>
               </button>
@@ -167,6 +168,13 @@ export default function CommitList({
                 <div className={styles.summary}>
                   <strong className={styles.sha}>{c.sha}</strong>
                   <span className={styles.msg}>{c.message}</span>
+                  <div className={styles.refs}>
+                    {(c.refs ?? []).slice(0, 3).map((r) => (
+                      <span key={r} className={styles.refChip}>
+                        {r}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </button>
             </div>
