@@ -72,4 +72,63 @@ describe('App skeleton', () => {
     // merge commit should disappear
     expect(screen.queryByText(/mrg999/i)).not.toBeInTheDocument();
   });
+
+  it('pastes JSON and renders commits', async () => {
+    render(<App />);
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText(/import json/i));
+
+    const json = JSON.stringify({
+      repoName: 'x',
+      commits: [
+        {
+          sha: 'p111',
+          parents: [],
+          author: 'Dev X',
+          date: '2026-02-10T10:00:00.000Z',
+          message: 'Paste import works',
+          refs: ['main'],
+        },
+      ],
+    });
+
+    // await user.type(screen.getByLabelText(/paste json/i), json);
+    await user.click(screen.getByLabelText(/paste json/i));
+    await user.paste(json);
+    await user.click(screen.getByText(/import pasted json/i));
+
+    expect(screen.getByText(/p111/i)).toBeInTheDocument();
+    expect(screen.getByText(/paste import works/i)).toBeInTheDocument();
+  });
+
+  it('uploads a JSON file and renders commits', async () => {
+    render(<App />);
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText(/import json/i));
+
+    const json = JSON.stringify({
+      repoName: 'x',
+      commits: [
+        {
+          sha: 'u222',
+          parents: [],
+          author: 'Dev Y',
+          date: '2026-02-10T10:00:00.000Z',
+          message: 'Upload import works',
+          refs: [],
+        },
+      ],
+    });
+
+    const file = new File([json], 'history.json', { type: 'application/json' });
+    const input = screen.getByLabelText(/upload json/i) as HTMLInputElement;
+
+    // userEvent.upload is the clean way
+    await user.upload(input, file);
+
+    expect(await screen.findByText(/u222/i)).toBeInTheDocument();
+    expect(await screen.findByText(/upload import works/i)).toBeInTheDocument();
+  });
 });
