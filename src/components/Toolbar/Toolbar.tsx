@@ -1,9 +1,13 @@
 import styles from './Toolbar.module.css';
 
-export default function Toolbar() {
+type Props = {
+  onLoadSample: () => void;
+};
+
+export default function Toolbar({ onLoadSample }: Props) {
   return (
     <div className={styles.toolbar} data-testid='toolbar'>
-      <button>Load Sample</button>
+      <button onClick={onLoadSample}>Load Sample</button>
       <input placeholder='Search…' />
       <label>
         <input type='checkbox' />

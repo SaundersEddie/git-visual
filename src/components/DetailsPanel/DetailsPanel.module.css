@@ -1,3 +1,22 @@
 .container {
   padding: 16px;
 }
+
+.block {
+  margin-top: 12px;
+}
+
+.label {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+
+.mono {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 12px;
+  opacity: 0.95;
+  word-break: break-all;
+}

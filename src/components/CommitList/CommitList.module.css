@@ -3,3 +3,44 @@
   overflow: auto;
   padding: 16px;
 }
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.row:hover {
+  background-color: rgba(148, 163, 184, 0.08);
+}
+
+.selected {
+  border-color: #334155;
+  background-color: rgba(148, 163, 184, 0.12);
+}
+
+.sha {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.msg {
+  opacity: 0.95;
+}

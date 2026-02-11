@@ -1,0 +1,21 @@
+{
+  "repoName": "demo-repo",
+  "commits": [
+    {
+      "sha": "abc123",
+      "parents": [],
+      "author": "Dev A",
+      "date": "2026-02-10T10:00:00.000Z",
+      "message": "Initial commit",
+      "refs": ["main"]
+    },
+    {
+      "sha": "def456",
+      "parents": ["abc123"],
+      "author": "Dev A",
+      "date": "2026-02-10T11:00:00.000Z",
+      "message": "Add README",
+      "refs": []
+    }
+  ]
+}
