@@ -41,4 +41,35 @@ describe('App skeleton', () => {
     expect(within(details).getByText(/def456/i)).toBeInTheDocument();
     expect(within(details).getByText(/add readme/i)).toBeInTheDocument();
   });
+
+  it('filters commits by search query', async () => {
+    render(<App />);
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText(/load sample/i));
+
+    const search = screen.getByLabelText(/search/i);
+    await user.type(search, 'readme');
+
+    // should still show the matching commit
+    expect(screen.getByText(/def456/i)).toBeInTheDocument();
+
+    // and not show non-matching ones
+    expect(screen.queryByText(/fea111/i)).not.toBeInTheDocument();
+  });
+
+  it('hides merge commits when toggle is enabled', async () => {
+    render(<App />);
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText(/load sample/i));
+
+    // merge commit visible initially
+    expect(screen.getByText(/mrg999/i)).toBeInTheDocument();
+
+    await user.click(screen.getByLabelText(/hide merges/i));
+
+    // merge commit should disappear
+    expect(screen.queryByText(/mrg999/i)).not.toBeInTheDocument();
+  });
 });
